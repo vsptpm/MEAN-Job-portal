@@ -1,0 +1,32 @@
+<div class="max-w-full mx-auto mt-4">
+    <input class="p-2 w-full border rounded-md mb-4" type="text" placeholder="Search by name" [(ngModel)]="searchTerm"
+        (input)="searchApplications()" />
+    <button class="bg-blue-500 mb-4 w-full text-white p-2 rounded-md hover:bg-blue-600"
+        (click)="createNewApplication()">Add New
+        Application</button>
+
+    <table class="w-full border">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="p-2 border">Name</th>
+                <th class="p-2 border">Date of Birth</th>
+                <th class="p-2 border">City</th>
+                <th class="p-2 border">Phone</th>
+                <th class="p-2 border">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let application of applications">
+                <td class="p-2 border text-blue-600" (click)="editApplication(application)">{{
+                    application.name }}</td>
+                <td class="p-2 border">{{ application.dob | date: 'mediumDate' }}</td>
+                <td class="p-2 border">{{ application.city }}</td>
+                <td class="p-2 border">{{ application.phone }}</td>
+                <td class="p-2 border">{{ application.description }}</td>
+            </tr>
+            <tr *ngIf="!applications.length">
+                <td colspan="5" class="text-center p-2 border">No Data found</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

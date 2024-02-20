@@ -1,0 +1,76 @@
+<form [formGroup]="applicationForm" class="max-w-md mx-auto my-4 p-6 bg-white shadow-md rounded-md">
+    <div *ngIf="showToast" id="toast-success"
+        class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-100 dark:bg-blue-600"
+        role="alert">
+        <div
+            class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-blue-800 dark:text-gray-100">
+            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                viewBox="0 0 20 20">
+                <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="sr-only">Check icon</span>
+        </div>
+        <div class="ms-3 text-sm font-normal">Application updated successfully.</div>
+    </div>
+    <div class="mb-4">
+        <label for="name" class="block text-sm font-medium text-gray-600">Name</label>
+        <input class="mt-1 p-2 w-full border rounded-md" type="text" formControlName="name" placeholder="Name">
+        <div *ngIf="applicationForm.get('name')?.invalid && applicationForm.get('name')?.touched">
+            <small class="text-red-500">Name is required.</small>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="dob" class="block text-sm font-medium text-gray-600">Date of Birth</label>
+        <input class="mt-1 p-2 w-full border rounded-md" type="date" formControlName="dob" placeholder="Date of Birth">
+        <div *ngIf="applicationForm.get('dob')?.invalid && applicationForm.get('dob')?.touched">
+            <small class="text-red-500">Date of Birth is required.</small>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="city" class="block text-sm font-medium text-gray-600">City</label>
+        <input class="mt-1 p-2 w-full border rounded-md" type="text" formControlName="city" placeholder="City">
+    </div>
+
+    <div class="mb-4">
+        <label for="resume" class="mb-2 block text-sm font-medium text-gray-600">Resume</label>
+        <input
+            class="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-blue-500 dark:file:text-neutral-100 dark:focus:border-primary"
+            type="file" formControlName="resume" accept=".pdf,.doc,.docx" placeholder="Resume">
+        <div *ngIf="applicationForm.get('resume')?.invalid && applicationForm.get('resume')?.touched">
+            <small class="text-red-500">Resume is required.</small>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="additionalDocuments" class="mb-2 block text-sm font-medium text-gray-600">Additional
+            Documents</label>
+        <input
+            class="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-blue-500 dark:file:text-neutral-100 dark:focus:border-primary"
+            type="file" formControlName="additionalDocuments" multiple accept=".pdf,.doc,.docx"
+            placeholder="Additional Documents">
+        <div
+            *ngIf="applicationForm.get('additionalDocuments')?.invalid && applicationForm.get('additionalDocuments')?.touched">
+            <small class="text-red-500">Additional Documents are required.</small>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="phone" class="block text-sm font-medium text-gray-600">Phone</label>
+        <input class="mt-1 p-2 w-full border rounded-md" type="text" formControlName="phone" placeholder="Phone">
+        <div *ngIf="applicationForm.get('phone')?.invalid && applicationForm.get('phone')?.touched">
+            <small class="text-red-500">Phone is required.</small>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="description" class="block text-sm font-medium text-gray-600">Description</label>
+        <textarea class="mt-1 p-2 w-full border rounded-md" formControlName="description"
+            placeholder="Description"></textarea>
+    </div>
+
+    <button type="button" class="bg-blue-500 w-full text-white p-2 rounded-md hover:bg-blue-600"
+        (click)="submitApplication()">{{ isEditMode ? 'Update Application' : 'Submit Application' }}</button>
+</form>
